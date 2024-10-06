@@ -559,9 +559,9 @@ export default function Home() {
                       <SelectItem value='job_application'>
                         Job Application
                       </SelectItem>
-                      <SelectItem value='business_outreach'>
+                      {/* <SelectItem value='business_outreach'>
                         Business Outreach
-                      </SelectItem>
+                      </SelectItem> */}
                     </SelectContent>
                   </Select>
                   <Button
