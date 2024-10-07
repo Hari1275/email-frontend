@@ -66,14 +66,11 @@ export default function Home() {
     setIsScrapingJobs(true);
     setScrapeError(null);
     try {
-      const response = await fetch(
-        'https://email-generator-1-bk4w.onrender.com/scrape_job',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ url }),
-        }
-      );
+      const response = await fetch('http://localhost:9000/scrape_job', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url }),
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -96,22 +93,19 @@ export default function Home() {
     setIsGeneratingEmail(true);
     setEmailGenerationError(null);
     try {
-      const response = await fetch(
-        'https://email-generator-1-bk4w.onrender.com/generate_email',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            job_description: JSON.stringify(selectedJob),
-            template_name: emailType,
-            email_tone: emailTone,
-            email_length: emailLength,
-            include_portfolio: includePortfolio,
-            include_experiences: includeExperiences,
-            emphasis_points: emphasisPoints,
-          }),
-        }
-      );
+      const response = await fetch('http://localhost:9000/generate_email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          job_description: JSON.stringify(selectedJob),
+          template_name: emailType,
+          email_tone: emailTone,
+          email_length: emailLength,
+          include_portfolio: includePortfolio,
+          include_experiences: includeExperiences,
+          emphasis_points: emphasisPoints,
+        }),
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -434,7 +428,7 @@ export default function Home() {
                                   onClick={() => handleSaveJob(job)}
                                   className='text-white hover:bg-white hover:bg-opacity-10'
                                 >
-                                  <Save className='h-5 w-5' />
+                                  <Save className='h-5 w-5 text-black' />
                                 </Button>
                               </>
                             ) : (
@@ -530,9 +524,9 @@ export default function Home() {
                   size='sm'
                   onClick={() => addToComparison(selectedJob)}
                   disabled={jobsToCompare.length >= 2}
-                  className='mt-4 text-white border-white border-opacity-50 hover:bg-white hover:bg-opacity-10'
+                  className='mt-4 text-black border-white border-opacity-50 hover:bg-white hover:bg-opacity-10'
                 >
-                  <Plus className='h-4 w-4 mr-1' />
+                  <Plus className='h-4 w-4 mr-1 text-black' />
                   Add to Comparison
                 </Button>
               </CardContent>
